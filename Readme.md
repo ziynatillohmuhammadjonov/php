@@ -29,3 +29,7 @@ O'zgaruvchilar, ularni turlari, konstantalar va ular bilan ishlash.
 2. Biz ochadiga konstantalar
 
 - `defined('PI' 3.14)` ishlatilishi `echo PI`
+
+# 4-dars
+
+Shart operatorlari `if` `trenary opertor` `switch case`
