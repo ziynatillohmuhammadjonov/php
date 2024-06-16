@@ -109,3 +109,10 @@ Fayllar bilan ishlanganda avval fay ochiladi , so'ng o'zgartirish kerak bo'lsa o
 - echo filesize('./data/text.txt') . ' Kb<br>'; //faylni o'lchamini beradi
 - rename('./data/text.txt', './data/data.txt');//faylni nomini o'zgartirish
 - unlink('./data/data.txt'); //faylni o'chirish
+
+# 11-dars
+
+Sessionstore va Cookie
+
+SessionStore bilanishlashda uni avval kerak bo'ladigan faylda `session_start()` bilan ishlatishimizni aytib olamiz. Keyin `$_SESSION['name'] = $_POST['name']; $_SESSION['email'] = $_POST['email'];` ko'rinishida yozib uni `$_SESSION['name']` da ishlatamiz.
+Cookieni berib `setcookie(name, value, time()+son)` o'chirish uchun sonni teskarisini beramiz. Ishlatish `$_COOKIE['name']`
