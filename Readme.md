@@ -6,3 +6,7 @@
 
 - '' -oddiy tekstlar uchun ishltiladi.
 - "" - murkkab narsalar uhun ishlatiladi va joyni '' dan ko'ra koproq eggallaydi.
+- `//` - orqali faqat birta qotorni kommentriyaga oladi.
+- `#` - ham bir qatorni
+- `/**/` - ichida istalgancha qatorlar kommentariya qilinadi.
+- `.` - esa ikkita matinni bir biriga qo'shish uchun ishlatiladi.
