@@ -122,3 +122,40 @@ Cookieni berib `setcookie(name, value, time()+son)` o'chirish uchun sonni teskar
 Vaqt,ko'p sonli ichiki funksiyalar, global massiv, server.
 
 Barcha funksiyalar yozildi qolganini netdan. Bundan tashqai $\_SERVER[] massivi orqali brauzer nomi ip sayt yo'li kabilar olinishi mumkin.
+
+# 13-14-dars
+
+OOP ga kirish.
+
+```class User
+    {
+        public $name;
+        private $surname;
+        private $login;
+        private $pass;
+
+        function __construct($name, $surname, $login) //bunda class chaqirilganda qiymatni birinchi bo'lib kiritiladi.
+        {
+            $this->name = $name;
+            $this->surname = $surname;
+            $this->login = $login;
+
+            $this->showInfo();
+        }
+
+        function showInfo()
+        {
+            echo 'Foydalanuvchi ismi: ' . $this->name . ' familiyasi: ' . $this->surname . ' logini: ' . $this->login . '<br>';
+        }
+
+        function __destruct() //bunda class sahifa oxirida xotiradan o'chirib tashlanadi.
+        {
+            print 'Yo\'qotilayapti: ' . __CLASS__ . '<br>'; //echo bilan print bir xil
+        }
+    }
+
+    $admin = new User('Ziynatilloh', 'Muhammadjonov', 1997);
+    $operator = new User('Nasibillo', 'Muhammadjonov', 2001);
+```
+
+bundan tashqari const ni class ichida ham e'lon qilib uni klassni ibyektga olmay ishlatish mumkin `USER::PASS` ko'rinishida.
