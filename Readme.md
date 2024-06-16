@@ -65,3 +65,26 @@ Proyekt ichidaga hamma sahifalarda takrorlanadigan qismlar header aside footer k
 2. include(/file_name.php) - Faylni qidiradi agar u bo'lmasa xato ko'rsatib qolgan kodni ham o'qitadi.
 3. required_once() - faylni faqat bir marta ko'chirib qo'yadi
 4. include_once() - bu ham
+
+# 8-dars
+
+Funksiyalar va o'zgaruvchilarni ko'rinish maydoni.
+
+PHP o'zgaruvchilar Js kabi global va local bo'ladi. Lekin global o'zgaruvchini ichki funksiya ichida ishlatmoqchi bo'lsak uni global o'zgaruvchi ekanligini aytishimiz kerak ekan.
+
+```
+$words='Salom';
+function printSome($name){
+    global $words;
+    return $words.' '.$name;
+}
+```
+
+Agar qiymatni o'zgarishini har safar doimiy ravishda saqlamoqchi bo'lsak funksiya ichida:
+
+```
+function printSome(){
+    static $num=0;
+    return $num++;
+}
+```

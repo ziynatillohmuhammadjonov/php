@@ -37,6 +37,19 @@
         $i++;
     } while ($i < $count);
     include('footer.php');
+
+
+    // Funksiya va uni ko'rinish maydonlari
+
+    function printSome()
+    {
+        static $num = 0;
+        return $num++;
+    }
+
+    echo printSome() . '<br>';
+    echo printSome() . '<br>';
+    echo printSome() . '<br>';
     ?>
 
 
