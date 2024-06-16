@@ -11,40 +11,34 @@
     <?php require('header.php'); ?>
     <h1>OOP</h1>
     <?php
-    class User
+    class Car
     {
-        const PASS = 'password';
-        public $name;
-        private $surname;
-        private $login;
-        private $pass;
+        protected $speed;
+        protected $wheels;
+        protected $color;
 
-        function __construct($name, $surname, $login) //bunda class chaqirilganda qiymatni birinchi bo'lib kiritiladi.
+        function __construct($speed, $color)
         {
-            $this->name = $name;
-            $this->surname = $surname;
-            $this->login = $login;
-
-            print self::PASS . '<br>'; //class ichida constantani ishlatish.
-
-            $this->showInfo();
-        }
-
-        function showInfo()
-        {
-            echo 'Foydalanuvchi ismi: ' . $this->name . ' familiyasi: ' . $this->surname . ' logini: ' . $this->login . '<br>';
-        }
-
-        function __destruct() //bunda class sahifa oxirida xotiradan o'chirib tashlanadi.
-        {
-            print 'Yo\'qotilayapti: ' . __CLASS__ . '<br>'; //echo bilan print bir xil
+            $this->speed = $speed;
+            $this->color = $color;
         }
     }
 
-    $admin = new User('Ziynatilloh', 'Muhammadjonov', 1997);
-    print User::PASS . '<br>'; //constantan class ichida tashqarida foydalanish;
-    $operator = new User('Nasibillo', 'Muhammadjonov', 2001);
-
+    class BMW extends Car
+    {
+        private $model;
+        function __construct($speed, $color, $model)
+        {
+            parent::__construct($speed, $color);
+            $this->model = $model;
+            $this->showInfo();
+        }
+        function showInfo()
+        {
+            print 'Model: ' . $this->model . ' Tezlik: ' . $this->speed . ' Rangi: ' . $this->color . '<br>';
+        }
+    }
+    $m3 = new BMW(250, 'Qora', 'M3');
     ?>
     <?php include('footer.php'); ?>
 </body>

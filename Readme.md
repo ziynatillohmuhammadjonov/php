@@ -159,3 +159,42 @@ OOP ga kirish.
 ```
 
 bundan tashqari const ni class ichida ham e'lon qilib uni klassni ibyektga olmay ishlatish mumkin `USER::PASS` ko'rinishida.
+
+# 15-dars
+
+Meros olish va o'zgartirish ruxsatlari.
+
+Class lar bilanishlashda 3 xil modifikatro mavjud:
+
+1.  `public` - bu b/n belgilangan maydon klassni o'zlashtirgan obyekda va klassni ichida ishlatish mumkin. ( Bu xavfsizlik jihatidan tavsiya etilamaydi. )
+2.  `private` - bunda maydon faqat shu klassni ichida ishlatilishi mumkin.
+3.  `protected` - bunda maydon ham shu kalssda va uni meros olgan klassda ishlatiladi.
+    Agar meros olishda ota klassni konstruktoridan ishlatish kerak bo'lsa ```class Car
+    {
+    protected $speed;
+    protected $wheels;
+    protected $color;
+
+            function __construct($speed, $color)
+            {
+                $this->speed = $speed;
+                $this->color = $color;
+            }
+        }
+
+        class BMW extends Car
+        {
+            private $model;
+            function __construct($speed, $color, $model)
+            {
+                parent::__construct($speed, $color);
+                $this->model = $model;
+                $this->showInfo();
+            }
+            function showInfo()
+            {
+                print 'Model: ' . $this->model . ' Tezlik: ' . $this->speed . ' Rangi: ' . $this->color . '<br>';
+            }
+        }
+        $m3 = new BMW(250, 'Qora', 'M3');```
+        ko'rinishida ishlatiladi.
