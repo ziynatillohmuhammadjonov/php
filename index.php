@@ -17,8 +17,27 @@
         echo "O'zgaruvchilar teng emas...";
     }
 
-    echo $x == 12 && $y ? 'true' : 'false';
+    echo $x == 12 && $y ? 'true </br>' : 'false </br>';
+
+    // Massivlar
+
+    $arr = array("short" => "Dictionary", "lang" => "Language", "Num" => 123);
+    foreach ($arr as $key => $value)
+        echo "Kaliti: " . $key . " qiymati: " . $value . "</br>";
+
+
+    // Sikl operatorlari for; while; do while
+
+    $arr_1 = array(3, 7, 4, 34.5, 9);
+    $count = count($arr_1);
+    $i = 0;
+    do {
+        echo "Qiymat " . ($i + 1) . ' - ' . $arr_1[$i] . '</br>';
+        $i++;
+    } while ($i < $count);
     ?>
+
+
 </body>
 
 </html>

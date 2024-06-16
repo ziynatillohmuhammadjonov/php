@@ -33,3 +33,25 @@ O'zgaruvchilar, ularni turlari, konstantalar va ular bilan ishlash.
 # 4-dars
 
 Shart operatorlari `if` `trenary opertor` `switch case`
+
+# 5-dars
+
+Massivlar bilan ishlash.
+
+PHP dagi massivlar Js dagi bo'lib unga qo'shimcha ravishda `Assootsiativ massiv` ham mavjud. Undan foydalanish:
+
+```
+$arr = array("short"=>"Dictionary", "lan"=>"Language")
+echo $arr["short"]
+```
+
+Uni barcha elementlarini ko'rsatish uchun:
+
+```
+foreach($arr as $key=>$value)
+    echo "Kaliti: ".$key." qiymati: ".$value
+```
+
+# 6-dars
+
+Sikllar: `for; while, do while`
