@@ -8,51 +8,41 @@
 </head>
 
 <body>
+    <?php require('header.php'); ?>
+    <form action="" method="post">
+        <h2>Ichki faylda so'rov</h2>
+        <label for="name">Ismingiz</label>
+        <input type="text" name="name" id="name">
+        <br>
+        <label for="email">Emailingiz</label>
+        <input type="email" name="email" id="email">
+        <button type="submit">Yuborish</button>
+    </form>
     <?php
-    require('header.php');
-    $x = 10;
-    $y = 15;
-    if ($x == $y) {
-        echo 'O\'zgaruvchilar teng';
+
+    if ($_POST['name'] == '') {
+        echo 'Ismingizni kiriting' . '<br>';
     } else {
-        echo "O'zgaruvchilar teng emas...";
+        echo 'Ism: ' . $_POST['name'] . '<br>';
+    };
+    if ($_POST['email'] == '') {
+        echo 'Emailingizni kiriting' . '<br>';
+    } else {
+        echo 'Email: ' . $_POST['email'];
     }
-
-    echo $x == 12 && $y ? 'true </br>' : 'false </br>';
-
-    // Massivlar
-
-    $arr = array("short" => "Dictionary", "lang" => "Language", "Num" => 123);
-    foreach ($arr as $key => $value)
-        echo "Kaliti: " . $key . " qiymati: " . $value . "</br>";
-
-
-    // Sikl operatorlari for; while; do while
-
-    $arr_1 = array(3, 7, 4, 34.5, 9);
-    $count = count($arr_1);
-    $i = 0;
-    do {
-        echo "Qiymat " . ($i + 1) . ' - ' . $arr_1[$i] . '</br>';
-        $i++;
-    } while ($i < $count);
-    include('footer.php');
-
-
-    // Funksiya va uni ko'rinish maydonlari
-
-    function printSome()
-    {
-        static $num = 0;
-        return $num++;
-    }
-
-    echo printSome() . '<br>';
-    echo printSome() . '<br>';
-    echo printSome() . '<br>';
+    // echo $_POST['email'] . '<br>';
     ?>
 
-
+    <form action="./check.php" method="get">
+        <h2>Tashqi faylda so'rov</h2>
+        <label for="name1">Ismingiz</label>
+        <input type="text" name="name1" id="name2">
+        <br>
+        <label for="email1">Emailingiz</label>
+        <input type="email" name="email1" id="email2">
+        <button type="submit">Yuborish</button>
+    </form>
+    <?php include('footer.php'); ?>
 </body>
 
 </html>

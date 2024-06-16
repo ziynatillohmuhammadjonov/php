@@ -88,3 +88,7 @@ function printSome(){
     return $num++;
 }
 ```
+
+# 9-dars
+
+GET va POST metodlari, formalarni ochish.
