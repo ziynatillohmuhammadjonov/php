@@ -116,3 +116,9 @@ Sessionstore va Cookie
 
 SessionStore bilanishlashda uni avval kerak bo'ladigan faylda `session_start()` bilan ishlatishimizni aytib olamiz. Keyin `$_SESSION['name'] = $_POST['name']; $_SESSION['email'] = $_POST['email'];` ko'rinishida yozib uni `$_SESSION['name']` da ishlatamiz.
 Cookieni berib `setcookie(name, value, time()+son)` o'chirish uchun sonni teskarisini beramiz. Ishlatish `$_COOKIE['name']`
+
+# 12-dars
+
+Vaqt,ko'p sonli ichiki funksiyalar, global massiv, server.
+
+Barcha funksiyalar yozildi qolganini netdan. Bundan tashqai $\_SERVER[] massivi orqali brauzer nomi ip sayt yo'li kabilar olinishi mumkin.
