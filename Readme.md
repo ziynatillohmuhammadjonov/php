@@ -92,3 +92,20 @@ function printSome(){
 # 9-dars
 
 GET va POST metodlari, formalarni ochish.
+
+# 10-dars
+
+Fayllar bilan ishlash.
+
+Fayllar bilan ishlanganda avval fay ochiladi , so'ng o'zgartirish kerak bo'lsa o'zgartiriladi, keyin yopiladi aks holda xotirani band qilib uni qotirib qo'yishi mumkin.
+
+- `fopen('./data/text.txt', 'r')` - fayl yo'li, u bilan ishlash turi
+- `fwrite('/data/text.txt, 'Yangi matn)` -
+- `fclose('/data/text.txt')` -
+  yoki bo'lamas boshqa yo'ldagi:
+- echo file_get_contents('./data/text.txt') . '<br>'; //faylni o'qish
+- echo file_put_contents('./data/text.txt', 'Yangi'); //faylni o'zgartirish
+- echo file_exists('./data/text.txt') . '<br>'; //faylni mavjudligini tekshiradi
+- echo filesize('./data/text.txt') . ' Kb<br>'; //faylni o'lchamini beradi
+- rename('./data/text.txt', './data/data.txt');//faylni nomini o'zgartirish
+- unlink('./data/data.txt'); //faylni o'chirish
