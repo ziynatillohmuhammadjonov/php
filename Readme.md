@@ -55,3 +55,13 @@ foreach($arr as $key=>$value)
 # 6-dars
 
 Sikllar: `for; while, do while`
+
+# 7-dars
+
+Proyektga dinamik fayllarni ulash.
+Proyekt ichidaga hamma sahifalarda takrorlanadigan qismlar header aside footer kabi ularni hamma sahifada qayta yozmasdan alohida qilib ulashga dinamik ulashlar deyiladi. Uni 4 xil ko'rinishi mavjud:
+
+1. required(/file_name.php) - Faylni qidiradi agar mavjud bo'lmasa sahifani ummuman ishlatmay qo'yadi xatoni ko'rsatib.
+2. include(/file_name.php) - Faylni qidiradi agar u bo'lmasa xato ko'rsatib qolgan kodni ham o'qitadi.
+3. required_once() - faylni faqat bir marta ko'chirib qo'yadi
+4. include_once() - bu ham

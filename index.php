@@ -9,6 +9,7 @@
 
 <body>
     <?php
+    require('header.php');
     $x = 10;
     $y = 15;
     if ($x == $y) {
@@ -35,6 +36,7 @@
         echo "Qiymat " . ($i + 1) . ' - ' . $arr_1[$i] . '</br>';
         $i++;
     } while ($i < $count);
+    include('footer.php');
     ?>
 
 
