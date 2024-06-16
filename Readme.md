@@ -198,3 +198,24 @@ Class lar bilanishlashda 3 xil modifikatro mavjud:
         }
         $m3 = new BMW(250, 'Qora', 'M3');```
         ko'rinishida ishlatiladi.
+
+# 16-dars
+
+Inkapsulatsiya va polimorfizm.
+
+- Inkapsulatsiya - bu turli xil parametrlarni foydalanuchilardan berkitish, modifikatorlar hisobiga. Tavsiya qilinadigan usul maydonlarni class ichida qoldirish yoki uni avlodlari ichida ham. Uni faqat funksiya, konstruktor yoki meros classlarda o'zgartirish.
+- Polimorfizm - bunda meros olinayotgan klass ichida barcha metodlar abstrakt bo'lib bo'sh bo'ladi. Qachonki uni meros olgan class qayta ko'rsatilsa uni interpretator bola classdan olib ota klassdagini ustiga yozib yuboradi.
+
+class Car {
+protected $speed;
+   function showInfo(){
+    $this->speed.' =Tezlik'
+   }
+}
+class BMW extendes Car{
+    private $model;
+    function showInfo(){
+    $this->speed.' =Tezlik'
+$this->model. ' =Model'
+}
+}
