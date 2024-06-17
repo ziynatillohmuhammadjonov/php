@@ -206,6 +206,7 @@ Inkapsulatsiya va polimorfizm.
 - Inkapsulatsiya - bu turli xil parametrlarni foydalanuchilardan berkitish, modifikatorlar hisobiga. Tavsiya qilinadigan usul maydonlarni class ichida qoldirish yoki uni avlodlari ichida ham. Uni faqat funksiya, konstruktor yoki meros classlarda o'zgartirish.
 - Polimorfizm - bunda meros olinayotgan klass ichida barcha metodlar abstrakt bo'lib bo'sh bo'ladi. Qachonki uni meros olgan class qayta ko'rsatilsa uni interpretator bola classdan olib ota klassdagini ustiga yozib yuboradi.
 
+```
 class Car {
 protected $speed;
    function showInfo(){
@@ -219,3 +220,12 @@ class BMW extendes Car{
 $this->model. ' =Model'
 }
 }
+```
+
+# 17-dars
+
+Interfeysi, treyti va abstraktniy klass
+
+- Interfeys - classlardan farqli ravishda bir nechtasini meros olib ishlash imkonini beradi.
+- Treytlar - undan oddiy kod yoki funksiyadan qayta qayta foydalanishda class ichida ishlatiladi.
+- Abstrakt klasslar - bu shunday klasslarki uni hech qanday obektga o'zlashtirib bo'lmaydi. Uni faqat meros olib foydalanish mumkin.

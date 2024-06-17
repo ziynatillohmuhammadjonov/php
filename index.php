@@ -11,34 +11,83 @@
     <?php require('header.php'); ?>
     <h1>OOP</h1>
     <?php
-    class Car
+    interface Human
     {
-        protected $speed;
-        protected $wheels;
+        public function talk();
+        public function walk();
+    }
+    interface Mutant
+    {
+        public function fly();
+    }
+    class Person implements Human, Mutant
+    {
+        function talk()
+        {
+            print 'Odam gapirayapti <br>';
+        }
+        function walk()
+        {
+            print 'Odam yurayapti <br>';
+        }
+        function fly()
+        {
+            print 'U ucha oladi ham <br>';
+        }
+    }
+
+    $bob = new Person();
+    $bob->talk();
+    $bob->walk();
+    $bob->fly();
+
+    // Treydi 
+    trait PrintSome
+    {
+        public function hello()
+        {
+            print 'Hello world <br>';
+        }
+        public function by()
+        {
+            print 'By by... <br>';
+        }
+    }
+
+    class World
+    {
+        use PrintSome;
+    }
+
+
+    $obj = new World();
+    $obj->hello();
+    $obj->by();
+
+    abstract class Car
+    {
+        protected $name;
         protected $color;
 
-        function __construct($speed, $color)
-        {
-            $this->speed = $speed;
-            $this->color = $color;
-        }
+        abstract protected function showInfo();
     }
 
     class BMW extends Car
     {
-        private $model;
-        function __construct($speed, $color, $model)
+        function __construct($name)
         {
-            parent::__construct($speed, $color);
-            $this->model = $model;
+            $this->name = $name;
+
+
             $this->showInfo();
         }
         function showInfo()
         {
-            print 'Model: ' . $this->model . ' Tezlik: ' . $this->speed . ' Rangi: ' . $this->color . '<br>';
+            echo 'Moshina nomi: ' . $this->name;
         }
     }
-    $m3 = new BMW(250, 'Qora', 'M3');
+
+    $x5 = new BMW('X5');
     ?>
     <?php include('footer.php'); ?>
 </body>
