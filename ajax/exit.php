@@ -1,6 +1,7 @@
 <?php
 // Удаление куки
-setcookie('log', '', time() - 3600 * 24 * 30, '/');
+setcookie('login', '', time() - 3600 * 24 * 30, '/');
+unset($_COOKIE['login']);
 
 // Возвращаем успешный ответ
 echo 'true';

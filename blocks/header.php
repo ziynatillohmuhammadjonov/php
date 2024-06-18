@@ -8,12 +8,17 @@
         </div>
         <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
             <a class="me-3 py-2 text-dark text-decoration-none" href="/php">Главная</a>
+            <?php
+            if(isset($_COOKIE['login']) &&$_COOKIE['login']!=''){
+                echo'<a class="me-3 py-2 text-dark text-decoration-none" href="/php/article.php">Добавит статью</a>';
+            }
+            ?>
             <!-- <a class="me-3 py-2 text-dark text-decoration-none" href="#">Enterprise</a>
             <a class="me-3 py-2 text-dark text-decoration-none" href="#">Support</a>
             <a class="py-2 text-dark text-decoration-none" href="#">Pricing</a> -->
         </nav>
         <?php
-        if (!isset($_COOKIE['log']) || $_COOKIE['log'] == ''):
+        if (!isset($_COOKIE['login']) || $_COOKIE['login'] == ''):
             ?>
             <div class="col-md-3 text-end">
                 <a href='/php/auth.php' type="button" class="btn btn-outline-primary me-2">Войти</a>

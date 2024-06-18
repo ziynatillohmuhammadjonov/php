@@ -32,7 +32,7 @@ try {
     if ($user->id == 0) {
         echo 'Такой ползовател не найден';
     } else {
-        setcookie('log', $login, time() + 3600 * 24 * 30, '/');
+        setcookie('login', $login, time() + 3600 * 24 * 30, '/');
         echo 'Всё готово';
     }
 

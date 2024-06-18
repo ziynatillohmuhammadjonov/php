@@ -10,7 +10,7 @@ require_once './blocks/head.php' ?>
         <div class="row">
             <div class="col-md-8 mb-3 mx-auto">
                 <?php
-                if (!isset($_COOKIE['log']) || $_COOKIE['log'] == ''):
+                if (!isset($_COOKIE['login']) || $_COOKIE['login'] == ''):
                 ?>
                     <h4 class="text-center">Форма авторизация</h4>
                     <form action="" method="post">
@@ -29,7 +29,7 @@ require_once './blocks/head.php' ?>
                     <?php
                 else:
                     ?>
-                    <h1><?= $_COOKIE['log'] ?></h1>
+                    <h1><?= $_COOKIE['login'] ?></h1>
                     <button class="btn btn-danger" id="exit_btn">Выйти</button>
                     <?php
                 endif;

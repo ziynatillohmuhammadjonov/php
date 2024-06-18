@@ -417,3 +417,19 @@ html kod...
 <?php
 endif;//shart tugaganligini bildiradi
 ?>
+
+
+# 26-dars
+
+Maqola qo'shish.
+
+Bunda maqolani qo'shish oddiy ko'rinishda INSERT INTO articles() VALUES() tartibida bo'ladi. Qo'shimcha ravishda agar sahifani kukie si yo'qlar uchun berkitmoqchi bo'lsak:
+```
+<?php 
+    if(!isset($_COOKIE['login']) ){
+        header('Location: /php/reg.php');
+        exit() ;
+    }
+?>
+```
+ko'rinishida ishlatiladi. Hamda kukieni bira to'la nomini arraydan o'chirish uchun `unset($_COOKIE['log'])` ko'rinisha yoziladi. Bo'lmasa kuki qiymati o'chsa ham o'zi o'chmas ekan.
