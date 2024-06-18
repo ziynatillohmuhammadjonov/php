@@ -229,3 +229,53 @@ Interfeysi, treyti va abstraktniy klass
 - Interfeys - classlardan farqli ravishda bir nechtasini meros olib ishlash imkonini beradi.
 - Treytlar - undan oddiy kod yoki funksiyadan qayta qayta foydalanishda class ichida ishlatiladi.
 - Abstrakt klasslar - bu shunday klasslarki uni hech qanday obektga o'zlashtirib bo'lmaydi. Uni faqat meros olib foydalanish mumkin.
+
+
+# 20-dars
+
+Malumotlar omborida malumotlarni tanlash
+
+- Dastlab MO ulanib olamiz 
+```
+  $user = 'root';
+    $password= '';
+    $db='testing';
+    $host='localhost';
+
+    $dns ='mysql:host='.$host.';dbname='.$db;
+    $pdo = new PDO($dns, $user, $password);
+```
+
+- Keyin SQL so'rovni yuboramiz: 
+```
+ $query = $pdo->query('SELECT * FROM `users` LIMIT 2');
+    while ($row = $query->fetch(PDO::FETCH_ASSOC)) { //::FETCH_OBJ - obyekt ko'rinishida oladi.
+       print('<h3>Roli</h3>'.$row['login'].'<br>Ismi: '.$row['name']);
+}
+```
+- `ORDER BY `${ustun nomi}`` - kerakli ustun bo'yicha filtr qiladi o'shish tartibida.
+- `ORDER BY `${ustun nomi}` DESC` - teskari tartibda filtr qiladi. Bunda ularni so'rovni oxirida LIMIT dan avval berish kerak.
+- Bazadan ma'lumotlarni tanlab olish uchun.
+```
+ $id='1';
+    $name='Ziynatilloh';
+    $sql= 'SELECT  `name`, `id`, `email` FROM `users` WHERE `name`= ?';// ?- buni o'rniga :name ko'rinishida qo'yishi mumkin.
+    $query= $pdo->prepare($sql);
+    $query->execute([$name]);
+    // while( $row = $query->fetchAll(PDO::FETCH_ASSOC)) {
+    //     echo'Email: '.$row['email'].' Name: '.$row['name']; 
+    // }
+    $users= $query->fetchAll(PDO::FETCH_ASSOC);
+    print_r($users);
+```
+- Ikkita va undan ortiq shart bilan tekshirib olish uchun va assotsiativ array ko'rinishida ma'lumotlarni yuborish.
+```
+  $id=1;
+    $name='Ziynatilloh';
+    $sql= 'SELECT  `name`, `id`, `email` FROM `users` WHERE `name`= :name && `id`= :id';// ?- buni o'rniga :name ko'rinishida qo'yishi mumkin.
+    $query= $pdo->prepare($sql);
+    $query->execute(['name'=>$name, 'id'=>$id]);
+    
+    $user= $query->fetch(PDO::FETCH_OBJ);
+    print_r($user);
+```
