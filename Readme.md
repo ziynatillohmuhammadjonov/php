@@ -365,3 +365,35 @@ try {
 ```
 
 Bunda passni ko'rinmaydiga qilish uchun uni `ichida` berdik sql so'rov vaqtida.
+
+# 24-dars
+
+Ajax so'rovlari bilan ishlash bizga sahifani yangilamasdan malumotlarni yuborish imkonini beradi.
+```
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $('#reg_btn').click(function () {
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var login = $('#login').val();
+            var pass = $('#pass').val();
+            $.ajax({
+                url: './reg/reg.php',
+                type: 'POST',
+                cache: false,
+                data: { 'name': name, 'email': email, 'login': login, 'pass': pass },
+                dataType: 'html',
+                success: function (data) {
+                    if (data == 'Всё готово') {
+                        $('#reg_btn').text('Всё готово');
+                        $('#error_block').hide();
+                    }else{
+                        $('#error_block').show();
+                        $('#error_block').text(data);
+                    }
+                }
+            });
+        });
+    </script>
+```
+undan keladigan succes bo'lgandagi `data` kerakli yo'naltirilgan url php dagi `echo` hisoblanadi.

@@ -10,7 +10,7 @@ require_once './blocks/head.php' ?>
         <div class="row">
             <div class="col-md-8 mb-3 mx-auto">
                 <h4 class="text-center">Форма регистрация</h4>
-                <form action="./reg/reg.php" method="post">
+                <form action="" method="post">
                     <div class="mb-3">
                         <label for="name" class="form-label">Ваше имя</label>
                         <input type="text" class="form-control" name="name" id="name" placeholder="Введите имя">
@@ -27,7 +27,9 @@ require_once './blocks/head.php' ?>
                         <label for="pass" class="form-label">Пароль</label>
                         <input type="password" class="form-control" name="pass" id="pass" placeholder="Введите парол">
                     </div>
-                    <button type="submit" class="btn btn-success">Зарегистрироват</button>
+                    <div class="alert alert-danger" role="alert" id="error_block">
+                    </div>
+                    <button type="button" class="btn btn-success" id="reg_btn">Зарегистрироват</button>
                 </form>
 
             </div>
@@ -40,7 +42,28 @@ require_once './blocks/head.php' ?>
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-        
+        $('#reg_btn').click(function () {
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var login = $('#login').val();
+            var pass = $('#pass').val();
+            $.ajax({
+                url: './reg/reg.php',
+                type: 'POST',
+                cache: false,
+                data: { 'name': name, 'email': email, 'login': login, 'pass': pass },
+                dataType: 'html',
+                success: function (data) {
+                    if (data == 'Всё готово') {
+                        $('#reg_btn').text('Всё готово');
+                        $('#error_block').hide();
+                    }else{
+                        $('#error_block').show();
+                        $('#error_block').text(data);
+                    }
+                }
+            });
+        });
     </script>
 </body>
 
