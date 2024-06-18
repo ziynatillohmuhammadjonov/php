@@ -255,7 +255,7 @@ Malumotlar omborida malumotlarni tanlash
 ```
 - `ORDER BY `${ustun nomi}`` - kerakli ustun bo'yicha filtr qiladi o'shish tartibida.
 - `ORDER BY `${ustun nomi}` DESC` - teskari tartibda filtr qiladi. Bunda ularni so'rovni oxirida LIMIT dan avval berish kerak.
-- Bazadan ma'lumotlarni tanlab olish uchun.
+- Bazadan ma'lumotlarni tanlab olish uchun. Bunda nega ? larda foydalaniladi sababi shunda uni biz PDO orqali ximoyalashimiz mumkin foydalanuvchilarga ochiqlanmaslig uchun.
 ```
  $id='1';
     $name='Ziynatilloh';
@@ -279,3 +279,39 @@ Malumotlar omborida malumotlarni tanlash
     $user= $query->fetch(PDO::FETCH_OBJ);
     print_r($user);
 ```
+
+# 21-dars 
+
+INSERT, UPDATE, DELETE
+
+- INSERT orqali biz ma'lumotlarni bazaga yozamiz. Bunda taribi to'g'ri kelishini kerak. Va assotsiativ array ko'rinishida ham yosa bo'ladi.
+```
+$login='codi999';
+    $email= 'test@test.ru';
+    $name='TestName';
+    $surname= 'TestUsername';
+
+    $sql = 'INSERT INTO users(login, email, name, surname) VALUES (?, ?, ?, ?)';
+
+    $query = $pdo->prepare($sql);
+    $query->execute([$login, $email, $name, $surname]);
+```
+
+- UPDATE - data, bunda assotsiativ arraydan foydalanish qulayik beradi.
+```
+ $id=4;
+    $login='codiNewv';
+    $name = 'TestName1';
+
+    $sql = 'UPDATE `users` SET `login`=?, `name`=? WHERE `id`=?';
+    $query = $pdo->prepare($sql);
+    $query->execute([$login,$name, $id]);
+```
+- DELETE - data
+```
+$id=4;
+    $sql = 'DELETE FROM `users` WHERE `id`=? ';
+    $query=$pdo->prepare($sql);
+    $query->execute([$id]);
+```
+
