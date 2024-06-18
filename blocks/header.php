@@ -12,9 +12,21 @@
             <a class="me-3 py-2 text-dark text-decoration-none" href="#">Support</a>
             <a class="py-2 text-dark text-decoration-none" href="#">Pricing</a> -->
         </nav>
-        <div class="col-md-3 text-end">
-            <a href='' type="button" class="btn btn-outline-primary me-2">Войти</a>
-            <a href='/php/reg.php' type="button" class="btn btn-primary">Регистрация</a>
-        </div>
+        <?php
+        if (!isset($_COOKIE['log']) || $_COOKIE['log'] == ''):
+            ?>
+            <div class="col-md-3 text-end">
+                <a href='/php/auth.php' type="button" class="btn btn-outline-primary me-2">Войти</a>
+                <a href='/php/reg.php' type="button" class="btn btn-primary">Регистрация</a>
+            </div>
+            <?php
+        else:
+            ?>
+            <div class="col-md-3 text-end">
+                <a href='/php/auth.php' type="button" class="btn btn-primary">Личний кабинет</a>
+            </div>
+            <?php
+        endif
+        ?>
     </header>
 </div>

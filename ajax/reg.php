@@ -24,16 +24,8 @@ if($error != '') {
 $hash = 'q1y1np@r0lch@';
 $hashPass= md5($hash.$pass);
 
-$user = 'root';
-$password = '';
-$db = 'testing';
-$host = 'localhost';
-$dns = 'mysql:host='.$host.';dbname='.$db;
-$pdo = new PDO($dns, $user,$password);
+require_once('../mysql_connect.php');
 
-// $sql='INSERT INTO users(name, email, login pass) VALUES(?, ?, ?, ?)';
-
-// $query = $pdo->prepare($sql);
 try {
     $sql = "INSERT INTO users (name, email, login, `pass`) VALUES (:name, :email, :login, :pass)";
     $stmt = $pdo->prepare($sql);

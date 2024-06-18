@@ -48,7 +48,7 @@ require_once './blocks/head.php' ?>
             var login = $('#login').val();
             var pass = $('#pass').val();
             $.ajax({
-                url: './reg/reg.php',
+                url: './ajax/reg.php',
                 type: 'POST',
                 cache: false,
                 data: { 'name': name, 'email': email, 'login': login, 'pass': pass },

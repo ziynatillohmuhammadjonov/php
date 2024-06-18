@@ -397,3 +397,23 @@ Ajax so'rovlari bilan ishlash bizga sahifani yangilamasdan malumotlarni yuborish
     </script>
 ```
 undan keladigan succes bo'lgandagi `data` kerakli yo'naltirilgan url php dagi `echo` hisoblanadi.
+
+# 25-dars
+
+Avtorizatsiya va chiqish.
+
+Buning uchun avtorizatsiya qilayotagnda login va parolni bazadagisi bilan tekshirib undan bazadan faqat id olamiz. Agar azada foydalanuvchi mavjud bo'lsa uni id si agar mavjud bo'lmasa uni o'rniga 0 raqami keladi. So'ng kelgan foydalanuvchi id tekshirilib u bo'lsa uni ma'lumotini cookie ga yozib qo'yamiz. 
+- Chiqish jarayoni uchun yozilgan kukieni ochirib sahifani reload qilamiz.
+Qo'shimcha ravishda shartni boshqacha ko'rinishida yozishni o'rgandik:
+<?php
+if(shart): // shart bajarilsa uni ostidagi kod ishlaydi.
+?>
+html kodni ko'rsatadi.
+//yoki qo'shimcha ravishda
+<?php
+else://agar yuqoridagi shart bajarilmasa quyi ko'rsatildi
+?>
+html kod...
+<?php
+endif;//shart tugaganligini bildiradi
+?>
