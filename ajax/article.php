@@ -10,7 +10,7 @@ if(strlen($title) <= 3) {
 } elseif(strlen($intro) <= 3) { 
     $error='Введите интро статьи';
 }elseif(strlen($text) <=3) {
-    $error='Введите текс статьи';
+    $error='Введите текст статьи';
 }
 
 
@@ -30,7 +30,6 @@ try {
         ':text' => $text,
         ':date' => time(),
         ':author' => $_COOKIE['login']
-
     ]);
 } catch (PDOException $e) {
     echo 'Error: ' . $e->getMessage();

@@ -433,3 +433,9 @@ Bunda maqolani qo'shish oddiy ko'rinishda INSERT INTO articles() VALUES() tartib
 ?>
 ```
 ko'rinishida ishlatiladi. Hamda kukieni bira to'la nomini arraydan o'chirish uchun `unset($_COOKIE['log'])` ko'rinisha yoziladi. Bo'lmasa kuki qiymati o'chsa ham o'zi o'chmas ekan.
+
+# 27-dars
+
+Maqolani ko'rsatish. 
+
+Maqolani ko'rsatish tizimi oddiy bo'lib unda `SELECT * FROM articles ORDER BY `id` DESC` ko'rinishisha olish mukin.
