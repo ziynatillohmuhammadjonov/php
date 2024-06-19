@@ -1,0 +1,22 @@
+#error_block{
+    display: none;
+}
+.wrapper-article{
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+}
+.card{
+    border-radius: 12px;
+    border:1px soldi #484545;
+    text-align: center;
+}
+.card:not(:last-child){
+    margin-bottom: 15px;
+}
+.author{
+    font-weight: 600;
+    padding: 10px 15px;
+    background: #FFFF8F;
+    border-radius:10px ;
+}

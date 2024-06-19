@@ -230,6 +230,7 @@ Interfeysi, treyti va abstraktniy klass
 - Treytlar - undan oddiy kod yoki funksiyadan qayta qayta foydalanishda class ichida ishlatiladi.
 - Abstrakt klasslar - bu shunday klasslarki uni hech qanday obektga o'zlashtirib bo'lmaydi. Uni faqat meros olib foydalanish mumkin.
 
+<<<<<<< HEAD
 # 20-dars
 
 Qiymatlarni MB dan olish.
@@ -259,3 +260,214 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
     }```
 
 ````
+=======
+
+# 20-dars
+
+Malumotlar omborida malumotlarni tanlash
+
+- Dastlab MO ulanib olamiz 
+```
+  $user = 'root';
+    $password= '';
+    $db='testing';
+    $host='localhost';
+
+    $dns ='mysql:host='.$host.';dbname='.$db;
+    $pdo = new PDO($dns, $user, $password);
+```
+
+- Keyin SQL so'rovni yuboramiz: 
+```
+ $query = $pdo->query('SELECT * FROM `users` LIMIT 2');
+    while ($row = $query->fetch(PDO::FETCH_ASSOC)) { //::FETCH_OBJ - obyekt ko'rinishida oladi.
+       print('<h3>Roli</h3>'.$row['login'].'<br>Ismi: '.$row['name']);
+}
+```
+- `ORDER BY `${ustun nomi}`` - kerakli ustun bo'yicha filtr qiladi o'shish tartibida.
+- `ORDER BY `${ustun nomi}` DESC` - teskari tartibda filtr qiladi. Bunda ularni so'rovni oxirida LIMIT dan avval berish kerak.
+- Bazadan ma'lumotlarni tanlab olish uchun. Bunda nega ? larda foydalaniladi sababi shunda uni biz PDO orqali ximoyalashimiz mumkin foydalanuvchilarga ochiqlanmaslig uchun.
+```
+ $id='1';
+    $name='Ziynatilloh';
+    $sql= 'SELECT  `name`, `id`, `email` FROM `users` WHERE `name`= ?';// ?- buni o'rniga :name ko'rinishida qo'yishi mumkin.
+    $query= $pdo->prepare($sql);
+    $query->execute([$name]);
+    // while( $row = $query->fetchAll(PDO::FETCH_ASSOC)) {
+    //     echo'Email: '.$row['email'].' Name: '.$row['name']; 
+    // }
+    $users= $query->fetchAll(PDO::FETCH_ASSOC);
+    print_r($users);
+```
+- Ikkita va undan ortiq shart bilan tekshirib olish uchun va assotsiativ array ko'rinishida ma'lumotlarni yuborish.
+```
+  $id=1;
+    $name='Ziynatilloh';
+    $sql= 'SELECT  `name`, `id`, `email` FROM `users` WHERE `name`= :name && `id`= :id';// ?- buni o'rniga :name ko'rinishida qo'yishi mumkin.
+    $query= $pdo->prepare($sql);
+    $query->execute(['name'=>$name, 'id'=>$id]);
+    
+    $user= $query->fetch(PDO::FETCH_OBJ);
+    print_r($user);
+```
+
+# 21-dars 
+
+INSERT, UPDATE, DELETE
+
+- INSERT orqali biz ma'lumotlarni bazaga yozamiz. Bunda taribi to'g'ri kelishini kerak. Va assotsiativ array ko'rinishida ham yosa bo'ladi.
+```
+$login='codi999';
+    $email= 'test@test.ru';
+    $name='TestName';
+    $surname= 'TestUsername';
+
+    $sql = 'INSERT INTO users(login, email, name, surname) VALUES (?, ?, ?, ?)';
+
+    $query = $pdo->prepare($sql);
+    $query->execute([$login, $email, $name, $surname]);
+```
+
+- UPDATE - data, bunda assotsiativ arraydan foydalanish qulayik beradi.
+```
+ $id=4;
+    $login='codiNewv';
+    $name = 'TestName1';
+
+    $sql = 'UPDATE `users` SET `login`=?, `name`=? WHERE `id`=?';
+    $query = $pdo->prepare($sql);
+    $query->execute([$login,$name, $id]);
+```
+- DELETE - data
+```
+$id=4;
+    $sql = 'DELETE FROM `users` WHERE `id`=? ';
+    $query=$pdo->prepare($sql);
+    $query->execute([$id]);
+```
+
+# 23-dars
+
+Foydalanuvchilarni ro'yxatdan o'tkazish va ularni bazaga yozish.
+```
+<?php
+$username = filter_var($_POST['name'],FILTER_SANITIZE_STRING);
+$email =filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
+$login = filter_var($_POST['login'], FILTER_SANITIZE_STRING);
+$pass=filter_var($_POST['pass'],FILTER_SANITIZE_STRING);
+
+
+if(strlen($username) <= 3) {
+    exit();
+} elseif(strlen($email) <= 3) { 
+    exit();
+}elseif(strlen($login) <=3) {
+    exit();
+}elseif(strlen($pass) <= 3) {
+    exit();
+}
+
+$hash = 'q1y1np@r0lch@';
+$hashPass= md5($hash.$pass);
+
+$user = 'root';
+$password = '';
+$db = 'testing';
+$host = 'localhost';
+$dns = 'mysql:host='.$host.';dbname='.$db;
+$pdo = new PDO($dns, $user,$password);
+
+// $sql='INSERT INTO users(name, email, login pass) VALUES(?, ?, ?, ?)';
+
+// $query = $pdo->prepare($sql);
+try {
+    $sql = "INSERT INTO users (name, email, login, `pass`) VALUES (:name, :email, :login, :pass)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ':name' => $username,
+        ':email' => $email,
+        ':login' => $login,
+        ':pass' => $hashPass
+
+    ]);
+} catch (PDOException $e) {
+    echo 'Error: ' . $e->getMessage();
+}
+```
+
+Bunda passni ko'rinmaydiga qilish uchun uni `ichida` berdik sql so'rov vaqtida.
+
+# 24-dars
+
+Ajax so'rovlari bilan ishlash bizga sahifani yangilamasdan malumotlarni yuborish imkonini beradi.
+```
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $('#reg_btn').click(function () {
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var login = $('#login').val();
+            var pass = $('#pass').val();
+            $.ajax({
+                url: './reg/reg.php',
+                type: 'POST',
+                cache: false,
+                data: { 'name': name, 'email': email, 'login': login, 'pass': pass },
+                dataType: 'html',
+                success: function (data) {
+                    if (data == 'Всё готово') {
+                        $('#reg_btn').text('Всё готово');
+                        $('#error_block').hide();
+                    }else{
+                        $('#error_block').show();
+                        $('#error_block').text(data);
+                    }
+                }
+            });
+        });
+    </script>
+```
+undan keladigan succes bo'lgandagi `data` kerakli yo'naltirilgan url php dagi `echo` hisoblanadi.
+
+# 25-dars
+
+Avtorizatsiya va chiqish.
+
+Buning uchun avtorizatsiya qilayotagnda login va parolni bazadagisi bilan tekshirib undan bazadan faqat id olamiz. Agar azada foydalanuvchi mavjud bo'lsa uni id si agar mavjud bo'lmasa uni o'rniga 0 raqami keladi. So'ng kelgan foydalanuvchi id tekshirilib u bo'lsa uni ma'lumotini cookie ga yozib qo'yamiz. 
+- Chiqish jarayoni uchun yozilgan kukieni ochirib sahifani reload qilamiz.
+Qo'shimcha ravishda shartni boshqacha ko'rinishida yozishni o'rgandik:
+<?php
+if(shart): // shart bajarilsa uni ostidagi kod ishlaydi.
+?>
+html kodni ko'rsatadi.
+//yoki qo'shimcha ravishda
+<?php
+else://agar yuqoridagi shart bajarilmasa quyi ko'rsatildi
+?>
+html kod...
+<?php
+endif;//shart tugaganligini bildiradi
+?>
+
+
+# 26-dars
+
+Maqola qo'shish.
+
+Bunda maqolani qo'shish oddiy ko'rinishda INSERT INTO articles() VALUES() tartibida bo'ladi. Qo'shimcha ravishda agar sahifani kukie si yo'qlar uchun berkitmoqchi bo'lsak:
+```
+<?php 
+    if(!isset($_COOKIE['login']) ){
+        header('Location: /php/reg.php');
+        exit() ;
+    }
+?>
+```
+ko'rinishida ishlatiladi. Hamda kukieni bira to'la nomini arraydan o'chirish uchun `unset($_COOKIE['log'])` ko'rinisha yoziladi. Bo'lmasa kuki qiymati o'chsa ham o'zi o'chmas ekan.
+
+# 27-dars
+
+Maqolani ko'rsatish. 
+
+Maqolani ko'rsatish tizimi oddiy bo'lib unda `SELECT * FROM articles ORDER BY `id` DESC` ko'rinishisha olish mukin.
+>>>>>>> origin/work-pc
