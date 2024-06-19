@@ -229,3 +229,33 @@ Interfeysi, treyti va abstraktniy klass
 - Interfeys - classlardan farqli ravishda bir nechtasini meros olib ishlash imkonini beradi.
 - Treytlar - undan oddiy kod yoki funksiyadan qayta qayta foydalanishda class ichida ishlatiladi.
 - Abstrakt klasslar - bu shunday klasslarki uni hech qanday obektga o'zlashtirib bo'lmaydi. Uni faqat meros olib foydalanish mumkin.
+
+# 20-dars
+
+Qiymatlarni MB dan olish.
+
+Buning uchun dastalb MB ga ulanib olamiz ``` $user = 'root';
+$password = '';
+$db = 'testing';
+$host = 'localhost';
+
+    $dsn = 'mysql:host=' . $host . ';dbname=' . $db;
+    $pdo = new PDO($dsn, $user, $password);```
+
+So'ng kerakli SQL so'rovlar bilan ularni ustida ishalymiz.
+
+1. Ma'lumotlarni massiv ko'rinishida ko'rsatish ko'rsatish.
+   `` $query = $pdo->query('SELECT * FROM `users`');
+// echo type($query->fetch(PDO::FETCH_ASSOC));
+while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+    echo '<h1> Login: ' . $row['login'] . '</h1><p>Email: <b>' . $row['email'] . '</b></p>';
+}``
+2. Ma'lumotlarni obyekt ko'rinishida ko'rsatish.
+
+````
+    $query = $pdo->query('SELECT * FROM `users`');
+    while ($row = $query->fetch(PDO::FETCH_OBJ)) {
+        echo '<h1> Login: ' . $row['login'] . '</h1><p>Email: <b>' . $row['email'] . '</b></p>';
+    }```
+
+````

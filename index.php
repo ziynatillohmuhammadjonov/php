@@ -8,86 +8,25 @@
 </head>
 
 <body>
-    <?php require('header.php'); ?>
-    <h1>OOP</h1>
     <?php
-    interface Human
-    {
-        public function talk();
-        public function walk();
+
+    use function PHPSTORM_META\type;
+
+    require('header.php'); ?>
+    <h1>MO (БД)</h1>
+    <?php
+    $user = 'root';
+    $password = '';
+    $db = 'testing';
+    $host = 'localhost';
+
+    $dsn = 'mysql:host=' . $host . ';dbname=' . $db;
+    $pdo = new PDO($dsn, $user, $password);
+
+    $query = $pdo->query('SELECT * FROM `users`');
+    while ($row = $query->fetch(PDO::FETCH_OBJ)) {
+        echo '<h1> Login: ' . $row['login'] . '</h1><p>Email: <b>' . $row['email'] . '</b></p>';
     }
-    interface Mutant
-    {
-        public function fly();
-    }
-    class Person implements Human, Mutant
-    {
-        function talk()
-        {
-            print 'Odam gapirayapti <br>';
-        }
-        function walk()
-        {
-            print 'Odam yurayapti <br>';
-        }
-        function fly()
-        {
-            print 'U ucha oladi ham <br>';
-        }
-    }
-
-    $bob = new Person();
-    $bob->talk();
-    $bob->walk();
-    $bob->fly();
-
-    // Treydi 
-    trait PrintSome
-    {
-        public function hello()
-        {
-            print 'Hello world <br>';
-        }
-        public function by()
-        {
-            print 'By by... <br>';
-        }
-    }
-
-    class World
-    {
-        use PrintSome;
-    }
-
-
-    $obj = new World();
-    $obj->hello();
-    $obj->by();
-
-    abstract class Car
-    {
-        protected $name;
-        protected $color;
-
-        abstract protected function showInfo();
-    }
-
-    class BMW extends Car
-    {
-        function __construct($name)
-        {
-            $this->name = $name;
-
-
-            $this->showInfo();
-        }
-        function showInfo()
-        {
-            echo 'Moshina nomi: ' . $this->name;
-        }
-    }
-
-    $x5 = new BMW('X5');
     ?>
     <?php include('footer.php'); ?>
 </body>
